@@ -15,9 +15,10 @@ function desenhaGrafo(file, id) {
 
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
-			.force("charge", d3.forceManyBody().strength(-50))
+			.force("charge", d3.forceManyBody().strength(-100))
 			.force("center", d3.forceCenter(width / 2, height / 2))
-			.force("forceY", d3.forceY(10));
+			.force("forceY", d3.forceY(5))
+			.force("forceX", d3.forceX(-5));
 
 		var links = [];
 		apiresponse.forEach(function(d) {
@@ -67,9 +68,8 @@ function desenhaGrafo(file, id) {
 			.selectAll("circle")
 			    .data(nodes)
 			.enter().append("circle")
-			    .attr("r", 5)
 			    .attr("fill", function(d) { return color(d.codigo_departamento); })
-			    .attr("r", function(d) { return (+d.creditos + 1.5) * 1.5; })
+			    .attr("r", function(d) { return ((+d.creditos <= 1) ? 2.5 : +d.creditos*1.5); })
 			.call(d3.drag()
 			    .on("start", dragstarted)
 			    .on("drag", dragged)
@@ -133,7 +133,7 @@ desenhaGrafo("dados_disciplinas/medicina_d_cg.json", "#chart_med");
 desenhaGrafo("dados_disciplinas/nutricao_d_ct.json", "#chart_nut");
 desenhaGrafo("dados_disciplinas/odontologia_d_pt.json", "#chart_odo");
 
-desenhaGrafo("dados_disciplinas/psicologia_n_cg.json", "#chart_psi");
+desenhaGrafo("dados_disciplinas/farmacia_d_ct.json", "#chart_far");
 desenhaGrafo("dados_disciplinas/medicina_veterinaria_d_pt.json", "#chart_vet");
 
 //Humanas

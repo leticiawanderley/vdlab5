@@ -4,7 +4,7 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1 {
@@ -32,7 +32,7 @@ header {
 }
 
 header p {
-    font-family: "Roboto Slab", serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1em;
     font-weight: 400;
     letter-spacing: 0.075em;
@@ -53,7 +53,7 @@ button {
 }
 
 .header {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Poppins', sans-serif;
   border-bottom: solid 5px #f56a6a;
   padding: 6em 0 1em 0;
 }
@@ -92,5 +92,14 @@ button {
 }
 
 .btn-selected h4 {
-  font-weight: bold;
+  font-weight: bolder;
+}
+
+#exatasCharts {
+  display: block;
+}
+
+#saudeCharts,
+#humanasCharts {
+  display: none;
 }
