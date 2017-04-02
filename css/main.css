@@ -27,8 +27,8 @@ h2 {
 }
 
 header {
-  margin-top: 70px;
-  margin-bottom: 70px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 header p {
@@ -44,6 +44,12 @@ footer {
   margin-top: 30px;
   padding-top: 70px;
   background-color: #F5F6F7;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  margin-top: 50px;
 }
 
 .header {
@@ -67,4 +73,24 @@ footer {
 .sidebar-btn:hover {
   color: #f56a6a;
   text-decoration: none;
+}
+
+.nome-disciplina {
+  color: lightgrey;
+}
+
+.riscado {
+  text-decoration: line-through;
+}
+
+.headers {
+  color: slategrey;
+}
+
+.btn-selected {
+  text-decoration: underline;
+}
+
+.btn-selected h4 {
+  font-weight: bold;
 }

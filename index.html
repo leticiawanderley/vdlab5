@@ -4,63 +4,154 @@
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>D3</title>
-
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<!--<link rel="icon" href="/favicon.ico" type="image/x-icon">-->
+	<title>UFCGrafos</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+	<link href="css/fonts.css" rel="stylesheet">
+	<style>
+			.node {
+			    fill: #ccc;
+			    stroke: #fff;
+			    stroke-width: 2px;
+			}
+
+			.link {
+					stroke: #999;
+					stroke-opacity: 0.6;
+			}
+    </style>
 </head>
 <body>
 
 	<div class="container">
-
-		<div class="header">
-			<h2>Introdução à D3</h2>
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-12">
+				<header>
+					<h1>UFCG<span class="riscado">rafos</span></h1>
+				</header>
+			</div>
+			<div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12">
+				<button  id="exatas" class="btn-selected" onclick="selecionaExatas()">
+					<h4 class="headers">Exatas</h4>
+				</button>
+			</div>
+			<div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12">
+				<button id="saude" onclick="selecionaSaude()">
+					<h4 class="headers">Saúde</h4>
+				</button>
+			</div>
+			<div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12">
+				<button id="humanas" onclick="selecionaHumanas()">
+					<h4 class="headers">Humanas</h4>
+				</button>
+			</div>
 		</div>
-		<header>
-			<h1>D3</h1>
-		</header>
-
-		<div class="section">
-
+		<div class="exatas">
 			<div class="row">
-				<div class="col-sm-4">
-
-					<h3>Referências</h3>
-					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation"><a href="https://github.com/d3/d3/wiki/Gallery" target="_blank">Galeria de exemplos D3</a></li>
-						<li role="presentation"><a href="http://christopheviau.com/d3list/" target="_blank">D3 Big list</a></li>
-						<li role="presentation"><a href="http://www.w3schools.com/graphics/svg_intro.asp" target="_blank">Introdução à SVG</a></li>
-					</ul>
-
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Ciência da Computação</h5>
+					<div id="chart_cc"></div>
 				</div>
-				<div class="col-sm-4">
-
-					<h3>Exemplos básicos</h3>
-					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation"><a href="area.html">Area chart</a></li>
-						<li role="presentation"><a href="bubble.html">Bubble ordinal chart</a></li>
-						<li role="presentation"><a href="bubble2.html">Bubble linear chart</a></li>
-						<li role="presentation"><a href="transition.html">Transitions</a></li>
-					</ul>
-
-				</div>
-				<div class="col-sm-4">
-
-					<h3>Exemplos de mapas</h3>
-					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation"><a href="map.html">Choropleth</a></li>
-						<li role="presentation"><a href="mapb.html">Choropleth + dados externos</a></li>
-					</ul>
-
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Engenharia Elétrica</h5>
+					<div id="chart_ee"></div>
 				</div>
 			</div>
-
-
-
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Arquitetura e Urbanismo</h5>
+					<div id="chart_au"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Engenharia Civil</h5>
+					<div id="chart_ec"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Engenharia de Produção</h5>
+					<div id="chart_pr"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Engenharia de Materiais</h5>
+					<div id="chart_mt"></div>
+				</div>
+			</div>
 		</div>
-
+		<div class="saude">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Enfermagem</h5>
+					<div id="chart_enf"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Medicina</h5>
+					<div id="chart_med"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Nutrição</h5>
+					<div id="chart_nut"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Odontologia</h5>
+					<div id="chart_odo"></div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Psicologia</h5>
+					<div id="chart_psi"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Medicina Veterinária</h5>
+					<div id="chart_vet"></div>
+				</div>
+			</div>
+		</div>
+		<div class="humanas" style={display:hidden}>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Letras</h5>
+					<div id="chart_letras"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Letras Inglês</h5>
+					<div id="chart_ingles"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">História</h5>
+					<div id="chart_historia"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Geografia</h5>
+					<div id="chart_geografia"></div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Comunicação Social</h5>
+					<div id="chart_social"></div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<h5 class="nome-disciplina">Pedagogia</h5>
+					<div id="chart_pedagogia"></div>
+				</div>
+			</div>
+		</div>
 	</div>
-
+	<footer></footer>
+	<!-- scripts -->
+	<script src="js/d3.v4.min.js"></script>
+	<script src="js/grafoDisciplina.js"></script>
+	<script src="js/vanillaUtils.js"></script>
 </body>
 </html>
