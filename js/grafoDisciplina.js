@@ -26,11 +26,10 @@ function desenhaGrafo(file, id) {
 			d.pre_requisitos.forEach(function(p){
 				links.push({source: String(d.codigo_disciplina), target: String(p)});
 			});
-			if (d.pos_requisitos.length === 0 && d.pre_requisitos.length != 0) {
-				links.push({source: String(d.codigo_disciplina), target: String(1000)})
-			}
-			else if (d.pre_requisitos.length === 0) {
+			if (d.pre_requisitos.length === 0 && d.semestre === 1) {
 				links.push({source: String(0), target: String(d.codigo_disciplina)})
+			} else if (d.pos_requisitos.length === 0) {
+				links.push({source: String(d.codigo_disciplina), target: String(1000)})
 			}
 		})
 
