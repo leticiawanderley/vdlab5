@@ -12,6 +12,7 @@ function desenhaGrafo(file, id) {
 			.attr('width', '100%');
 
 		var color = d3.scaleOrdinal(d3.schemeCategory10);
+		var colorBorder = d3.scaleOrdinal(d3.schemeCategory20b);
 
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
@@ -37,7 +38,8 @@ function desenhaGrafo(file, id) {
 			return {id: String(d.codigo_disciplina),
 					codigo_departamento : d.codigo_departamento,
 					nome : d.disciplina,
-					creditos: d.creditos};
+					creditos: d.creditos,
+					semestre: d.semestre};
 		});
 
 		nodes.push({
@@ -49,7 +51,7 @@ function desenhaGrafo(file, id) {
 
 		nodes.push({
 			id: '1000',
-			codigo_departamento : 1000,
+			codigo_departamento : 0,
 			nome : "Fim do curso",
 			creditos: 10
 		});
@@ -68,15 +70,21 @@ function desenhaGrafo(file, id) {
 			.selectAll("circle")
 			    .data(nodes)
 			.enter().append("circle")
-			    .attr("fill", function(d) { return color(d.codigo_departamento); })
+			    .attr("fill", function(d) { return color(d.semestre); })
 			    .attr("r", function(d) { return ((+d.creditos <= 1) ? 2.5 : +d.creditos*1.5); })
+			    .attr("stroke", function(d) { return colorBorder(d.codigo_departamento);})
+			    .attr("stroke-width", 3)
 			.call(d3.drag()
 			    .on("start", dragstarted)
 			    .on("drag", dragged)
 			    .on("end", dragended));
 
 		node.append("title")
-			.text(function(d) { return d.nome; });
+			.text(function(d) { 
+				return d.nome + 
+				((d.semestre) ? ('\n'+d.semestre+'º semestre') : '') +
+				((d.codigo_departamento > 0) ? ('\nDepartamento ' + d.codigo_departamento) : ''); 
+			});
 
 		simulation
 			.nodes(nodes)
